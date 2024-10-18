@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 public class Exam
 {
+    [Key]
     public int Id { get; set; }
 
     [Required]
@@ -14,5 +15,5 @@ public class Exam
     [ForeignKey("Topic_Id")]
     public Topic Topic { get; set; }
 
-    public ICollection<StudentCourseExam> StudentCourseExams { get; set; }=new List<StudentCourseExam>();
+    public ICollection<StudentCourseExam> StudentCourseExams { get; set; }
 }
