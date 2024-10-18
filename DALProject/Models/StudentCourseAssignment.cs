@@ -1,17 +1,19 @@
 ﻿ using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using DALProject.Models;
 
-public class StudentCourseAssignment : ModelBase
+public class StudentCourseAssignment
 {
-    public int StudentId { get; set; }
-
-    public int CourseId { get; set; }
-
-    public int AssignmentId { get; set; }
-
-    public Student Student { get; set; } = new Student();
-    
-    public Course Course { get; set; } = new Course(); 
-    public Assignment Assignment { get; set; } = new Assignment();
+    [Key, Column(Order = 1)]
+    public int St_Id { get; set; }
+    [Key, Column(Order = 2)]
+    public int Crs_Id { get; set; }
+    [Key, Column(Order = 3)]
+    public int Assignment_Id { get; set; }
+    // Navigation properties
+    [ForeignKey("St_Id")]
+    public Student Student { get; set; }
+    [ForeignKey("Crs_Id")]
+    public Course Course { get; set; }
+    [ForeignKey("Assignment_Id")]
+    public Assignment Assignment { get; set; }
 }

@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace DALProject.Models
 {
-    public class ModelBase
+    internal class ModelBase
     {
-        public int Id { get; set; }
     }
 }
