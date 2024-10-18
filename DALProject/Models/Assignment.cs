@@ -1,19 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using DALProject.Models;
 
-public class Assignment
+public class Assignment : ModelBase
 {
-    [Key]
-    public int Id { get; set; }
-
-    [Required, MaxLength(200)]
     public string Name { get; set; } = null!;
 
-    public int Topic_Id { get; set; }
+    public int TopicId { get; set; }
 
-    // Navigation properties
-    [ForeignKey("Topic_Id")]
     public Topic Topic { get; set; } = null!;
 
-    public ICollection<StudentCourseAssignment> StudentCourseAssignments { get; set; } = new List<StudentCourseAssignment>();
+    // public ICollection<StudentCourseAssignment> StudentCourseAssignments { get; set; } = new List<StudentCourseAssignment>();
 }
+

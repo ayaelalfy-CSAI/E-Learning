@@ -1,18 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using DALProject.Models;
 
-public class Exam
+public class Exam : ModelBase
 {
-    public int Id { get; set; }
 
-    [Required]
     public TimeSpan Duration { get; set; }
 
-    public int Topic_Id { get; set; }
+    public int TopicId { get; set; }
 
-    // Navigation properties
-    [ForeignKey("Topic_Id")]
-    public Topic Topic { get; set; }
+    public Topic? Topic { get; set; }
 
-    public ICollection<StudentCourseExam> StudentCourseExams { get; set; }=new List<StudentCourseExam>();
+   // public ICollection<StudentCourseExam> StudentCourseExams { get; set; }=new List<StudentCourseExam>();
+
 }
