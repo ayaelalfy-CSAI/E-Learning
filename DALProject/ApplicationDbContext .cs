@@ -24,14 +24,6 @@ public class ApplicationDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // Composite keys
-        modelBuilder.Entity<StudentCourse>()
-            .HasKey(sc => new { sc.St_Id, sc.Crs_Id });
-
-        modelBuilder.Entity<StudentCourseAssignment>()
-            .HasKey(sca => new { sca.St_Id, sca.Crs_Id, sca.Assignment_Id });
-
-        modelBuilder.Entity<StudentCourseExam>()    
-            .HasKey(sce => new { sce.St_Id, sce.Crs_Id, sce.Exam_Id });
+       
     }
 }
