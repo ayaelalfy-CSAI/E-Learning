@@ -1,0 +1,64 @@
+﻿@model CourseViewModel
+@{
+    Layout = "_HeaderFooterLayout";   
+}
+
+ <div class="container">
+    <div class="row justify-content-center"> 
+        <div class="col-md-6">
+            <h3>Add New Course</h3>
+            <br />
+           
+            <form asp-action="SaveCourse" method="post" enctype="multipart/form-data"> 
+                <div class="form-group"> 
+                    <label asp-for="Title">Title</label>
+                    <input class="form-control" asp-for="Title" />
+                    <span class="text-danger" asp-validation-for="Title"></span> 
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="formFile">Photo</label>
+                    <input type="file" class="form-control" asp-for="formFile" />
+                    <span class="text-danger" asp-validation-for="formFile"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="Description">Description</label>
+                    <input class="form-control" asp-for="Description" />
+                    <span class="text-danger" asp-validation-for="Description"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="Price">Price</label>
+                    <input class="form-control" asp-for="Price" />
+                    <span class="text-danger" asp-validation-for="Price"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="InstructorId">InstructorId</label>
+                    <input class="form-control" asp-for="InstructorId" />
+                    <span class="text-danger" asp-validation-for="InstructorId"></span>
+                </div>
+                <br />
+                <br />
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a> <!-- Adjust the URL as needed -->
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    < partial name="_ValidationScriptsPartial" />
+}
+
+
+
+
+
+
+
+
+
+
+
+

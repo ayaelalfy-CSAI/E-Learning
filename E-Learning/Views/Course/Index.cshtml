@@ -1,0 +1,49 @@
+﻿@model IEnumerable<CourseViewModel>
+@{
+    Layout = "_HeaderFooterLayout";
+    ViewData["Title"] = "Index";
+}
+
+@if (TempData["Message"] is not null) {
+    <div class="alert alert-success mt-4">
+        <h3>@TempData["Message"]</h3>
+    </div>
+}
+
+<div class="text-center">
+    <a href="/course/AddNewCourse" class="btn btn-primary" role="button" style="width: 400px;">Add new Course</a>
+</div>
+
+<br />
+<br />
+@if (Model.Any())
+{                             
+<div class="d-flex justify-content-center flex-wrap gap-3">
+    
+        @foreach (Course course in Model)
+        {
+          <div class="card" style="width:400px">
+                <img class="card-img-bottom" src="/img/@course.Photo?@DateTime.Now.Ticks" alt="Card image" style="width:100%">
+           @*  <img class="card-img-bottom" src="/img/@course.Photo" alt="Card image" style="width:100%"> *@
+            <div class="card-body">
+                <h4 class="card-title">@course.Title</h4>
+                <h4 class="card-title">@course.Price</h4>
+                <p class="card-text">@course.Description</p>
+                    <div class="d-flex flex-nowrap gap-2">
+                        <a asp-action="Detail" asp-route-id="@course.Id" class="btn btn-primary" style="width: 90px;">Detail</a>
+                        <a asp-action="Edit" asp-route-id="@course.Id" class="btn btn-primary" style="width: 90px;">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@course.Id" class="btn btn-primary" style="width: 90px;">Delete</a>
+                        <a asp-action="Manage" asp-route-id="@course.Id" class="btn btn-primary" style="width: 90px;">Manage</a>
+                    </div>
+                </div>
+          </div>  
+          } 
+
+</div>
+}
+else{ 
+    <div>
+        <h3>There Is No Courses</h3>
+    </div>
+}
+

@@ -7,7 +7,7 @@ public class Topic : ModelBase
     public string Title { get; set; } = null!;
 
     public int CourseId { get; set; }
-
+ 
     public Course Course { get; set; } = null!;
 
     public ICollection<Lecture> Lectures { get; set; }=new List<Lecture>();

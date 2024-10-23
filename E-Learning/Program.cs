@@ -1,6 +1,8 @@
+using BLLProject.Repositories;
 using E_Learning.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using BLLProject.Interfaces;
 
 namespace E_Learning
 {
@@ -14,6 +16,8 @@ namespace E_Learning
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             //builder.Services.AddDbContext<ApplicationDbContext>(options =>
             //    options.UseSqlServer(connectionString));
+
+            //register
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -22,6 +26,12 @@ namespace E_Learning
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
+
+            //register
+            builder.Services.AddScoped<IGenericRepository<Course>, CourseRepository>();
+            builder.Services.AddScoped<IGenericRepository<Topic>, TopicRepository>(); 
+
+
 
             var app = builder.Build();
 

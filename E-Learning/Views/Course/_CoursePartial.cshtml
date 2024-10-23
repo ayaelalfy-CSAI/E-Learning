@@ -1,0 +1,55 @@
+﻿@model CourseViewModel
+<div class="form-group">
+    <label> Course </label>
+    @if (!string.IsNullOrEmpty(Model.Photo))
+    {
+        <img src="@Url.Content("~/img/" + Model.Photo)" alt="Current Photo" style="max-width: 100%; height: auto;" />
+        @* <p>Current Image Path: @Model.Photo</p> *@
+    }
+    else
+    {
+        <p>No photo available</p>
+    }
+
+    @* <div class="form-group">
+    <label>Upload New Photo (optional)</label>
+    <input type="file" class="form-control" asp-for="formFile" />
+    <span class="text-danger" asp-validation-for="formFile"></span>
+    </div> *@
+</div>
+<br />
+<div class="form-group">
+    <label asp-for="Title">Title</label>
+    <input class="form-control" asp-for="Title" readonly />
+    @* <span class="text-danger" asp-validation-for="Title"></span> *@
+</div>
+<br />
+@* <div class="form-group">
+    <label asp-for="Photo">Photo</label>
+    <input class="form-control" asp-for="Photo" readonly />
+    
+</div> *@
+@* <div class="form-group">
+    <label asp-for="formFile">Photo</label>
+    <input type="file" class="form-control" asp-for="formFile" />
+   
+</div> *@
+
+<div class="form-group">
+    <label asp-for="Description">Description</label>
+    <input class="form-control" asp-for="Description" readonly />
+    
+</div>
+<br />
+<div class="form-group">
+    <label asp-for="Price">Price</label>
+    <input class="form-control" asp-for="Price" readonly />
+    
+</div>
+<br /> 
+<div class="form-group">
+    <label asp-for="InstructorId">InstructorId</label>
+    <input class="form-control" asp-for="InstructorId" readonly />
+    
+</div>
+

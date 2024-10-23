@@ -11,8 +11,8 @@ public class StudentCourseAssignment : ModelBase
 
     public int AssignmentId { get; set; }
 
-    //public Student Student { get; set; }
+    public Student Student { get; set; }
 
-   // public Course Course { get; set; }
-   // public Assignment Assignment { get; set; }
+    public Course Course { get; set; }
+    public Assignment Assignment { get; set; }
 }

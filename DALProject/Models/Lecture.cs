@@ -4,7 +4,6 @@ using DALProject.Models;
 
 public class Lecture : ModelBase
 {
-
     public string Title { get; set; } = null!;
 
     public string? Video { get; set; } 

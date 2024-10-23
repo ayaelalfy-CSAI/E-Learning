@@ -9,10 +9,10 @@ public class StudentCourseExam  :ModelBase
     public int CourseId { get; set; }
     public int ExamId { get; set; }
 
-    // public ICollection<StudentCourse> StudentCourses { get; set; } = new List<StudentCourse>();
-    // public Student Student { get; set; }
+   // public ICollection<StudentCourse> StudentCourses { get; set; } = new List<StudentCourse>();
+    public Student Student { get; set; }
 
-    //public Course Course { get; set; }
+    public Course Course { get; set; }
 
-    //public Exam Exam { get; set; }
+    public Exam Exam { get; set; }
 }
