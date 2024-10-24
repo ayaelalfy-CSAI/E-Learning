@@ -22,12 +22,12 @@ namespace E_Learning.Controllers
         public IActionResult Index(int Id)
         {
             IEnumerable<Topic> topics = TopicRepository.GetAll();
-            
+
             var filteredTopics = topics.Where(topic => topic.CourseId == Id);
-           
+
             var courseViewModels = filteredTopics.Select(topic => (TopicViewModel)topic).ToList();
- 
-            ViewData["CourseId"] = Id;        
+
+            ViewData["CourseId"] = Id;
 
             return View(courseViewModels);
         }
@@ -61,31 +61,31 @@ namespace E_Learning.Controllers
 
         // Topic/Delete/25
         public IActionResult Delete(int Id)
-        {           
+        {
             var topic = TopicRepository.GetById(Id);
 
             if (topic == null)
             {
                 return NotFound(); // If the topic does not exist, return a 404
             }
-            
+
             int result = TopicRepository.Delete(topic);
 
             if (result > 0)
             {
-                TempData["Message"] = "Topic Deleted Successfully";               
+                TempData["Message"] = "Topic Deleted Successfully";
                 return RedirectToAction(nameof(Index), new { Id = topic.CourseId });
             }
-            
+
             TempData["Error"] = "Unable to delete topic";
             return RedirectToAction(nameof(Index), new { Id = topic.CourseId });
         }
 
 
 
-       // public IActionResult SaveDelete()
-       //{                                  
-       //}
+        // public IActionResult SaveDelete()
+        //{                                  
+        //}
 
 
 
@@ -97,5 +97,5 @@ namespace E_Learning.Controllers
 
 
 
-                }
+    }
 }
