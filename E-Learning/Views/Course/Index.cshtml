@@ -33,11 +33,11 @@
                         <a asp-action="Detail" asp-route-id="@course.Id" class="btn btn-primary" style="width: 90px;">Detail</a>
                         <a asp-action="Edit" asp-route-id="@course.Id" class="btn btn-primary" style="width: 90px;">Edit</a>
                         <a asp-action="Delete" asp-route-id="@course.Id" class="btn btn-primary" style="width: 90px;">Delete</a>
-                        <a asp-action="Manage" asp-route-id="@course.Id" class="btn btn-primary" style="width: 90px;">Manage</a>
+                        <a asp-controller="Topic" asp-action="Index" asp-route-id="@course.Id" class="btn btn-primary" style="width: 90px;">Manage</a>
                     </div>
                 </div>
           </div>  
-          } 
+        } 
 
 </div>
 }

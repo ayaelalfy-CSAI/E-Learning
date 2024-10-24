@@ -1,0 +1,55 @@
+﻿@model TopicViewModel
+@{
+    Layout = "_HeaderFooterLayout";
+    ViewData["Title"] = "AddNewTopic";
+}
+
+<div class="container">                                     
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h3>Add New Topic</h3>
+            <br />
+
+            <form asp-asp-controller="Topic" asp-action="SaveTopic" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label asp-for="Title">Title</label>
+                    <input class="form-control" asp-for="Title" />
+                    <span class="text-danger" asp-validation-for="Title"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                   
+                    <input type="text" class="CourseId" asp-for="CourseId" hidden/>
+                  
+                </div>                
+                <br />                
+                <br />
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a asp-controller="Topic" asp-action="Index" asp-route-Id="@ViewData["CourseId"]" class="btn btn-secondary">Cancel</a> 
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+        < partial name="_ValidationScriptsPartial" />
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
