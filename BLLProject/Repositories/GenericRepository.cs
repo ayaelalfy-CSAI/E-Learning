@@ -11,7 +11,7 @@ namespace BLLProject.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : ModelBase
     {
-        // inject
+        // inject                                             
         private readonly ApplicationDbContext dbContext;
         public GenericRepository(ApplicationDbContext dbContext)
         {
@@ -53,7 +53,7 @@ namespace BLLProject.Repositories
         }
 
         //GetALL
-        public IEnumerable<T> GetAll() => dbContext.Set<T>().AsNoTracking().ToList();
+        public IQueryable<T> GetAll() => dbContext.Set<T>().AsNoTracking();
 
 
     }

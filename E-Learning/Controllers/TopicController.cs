@@ -2,6 +2,7 @@
 using BLLProject.Repositories;
 using E_Learning.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol.Core.Types;
 using System.Security.Cryptography.X509Certificates;
 
@@ -18,18 +19,22 @@ namespace E_Learning.Controllers
         }
 
         // topic/index/25    (getall)
-        // Id refers to courseId
+        // Id refers to courseId 
         public IActionResult Index(int Id)
         {
-            IEnumerable<Topic> topics = TopicRepository.GetAll();
 
-            var filteredTopics = topics.Where(topic => topic.CourseId == Id);
+            IQueryable<Topic> topics = TopicRepository.GetAll()
+                        .Include(t => t.Lectures) // Ensure lectures are included      
+                        .Where(topic => topic.CourseId == Id);
 
-            var courseViewModels = filteredTopics.Select(topic => (TopicViewModel)topic).ToList();
+            var courseViewModels = topics.Select(topic => (TopicViewModel)topic).ToList();
 
             ViewData["CourseId"] = Id;
 
             return View(courseViewModels);
+
+
+
         }
 
         // topic/ addnewtopic
@@ -59,7 +64,7 @@ namespace E_Learning.Controllers
             return View("AddNewCourse", TopicViewModel);
         }
 
-        // Topic/Delete/25
+        // Topic/Delete/25 
         public IActionResult Delete(int Id)
         {
             var topic = TopicRepository.GetById(Id);
@@ -80,12 +85,6 @@ namespace E_Learning.Controllers
             TempData["Error"] = "Unable to delete topic";
             return RedirectToAction(nameof(Index), new { Id = topic.CourseId });
         }
-
-
-
-        // public IActionResult SaveDelete()
-        //{                                  
-        //}
 
 
 

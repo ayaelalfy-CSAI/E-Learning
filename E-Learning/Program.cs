@@ -3,6 +3,7 @@ using E_Learning.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using BLLProject.Interfaces;
+using Microsoft.AspNetCore.Http.Features;
 
 namespace E_Learning
 {
@@ -29,9 +30,13 @@ namespace E_Learning
 
             //register
             builder.Services.AddScoped<IGenericRepository<Course>, CourseRepository>();
-            builder.Services.AddScoped<IGenericRepository<Topic>, TopicRepository>(); 
+            builder.Services.AddScoped<IGenericRepository<Topic>, TopicRepository>();
+            builder.Services.AddScoped<IGenericRepository<Lecture>, LectureRepository>();
 
-
+            builder.Services.Configure<FormOptions>(options =>
+            {
+                options.MultipartBodyLengthLimit = 524288000; // 500 MB limit
+            });
 
             var app = builder.Build();
 

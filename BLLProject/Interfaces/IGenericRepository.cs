@@ -24,7 +24,7 @@ namespace BLLProject.Interfaces
         public T GetById(int id);
 
         //GetALL
-        public IEnumerable<T> GetAll();
+        public IQueryable<T> GetAll();
 
 
     }

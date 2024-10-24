@@ -1,0 +1,54 @@
+﻿@model LectureViewModel
+@{
+    Layout = "_HeaderFooterLayout";
+    ViewData["Title"] = "AddNewLecture";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h3>Add New Lecture</h3>
+            <br />
+            <form asp-controller="Lecture" asp-action="SaveLecture" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Title">Title</label>
+        <input class="form-control" asp-for="Title" />
+        <span class="text-danger" asp-validation-for="Title"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="VideoFile">Upload Video</label>
+        <input type="file" class="form-control" asp-for="VideoFile" accept="video/*" />
+        <span class="text-danger" asp-validation-for="VideoFile"></span>
+    </div>
+    <br />
+                @* <div class="form-group"> *@
+                    @* <label asp-for="TopicId">TopicId</label> *@
+                    <input class="form-control" asp-for="TopicId" hidden  /> <!-- Use asp-for to bind the value from the model -->
+                    @* <span class="text-danger" asp-validation-for="TopicId"></span> *@
+               @*  </div> *@
+    <br />
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

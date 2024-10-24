@@ -1,0 +1,42 @@
+﻿@model List<LectureViewModel>
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "_HeaderFooterLayout";
+}
+
+<div class="container">
+    <h3>lectures: </h3>
+
+    <!-- Display all existing lectures related to this topic -->
+    <div class="list-group">
+        @foreach (var lecture in Model)
+        { 
+            <div class="list-group-item">
+                <h5> @lecture.Title </h5>
+                <video width="320" height="240" controls preload="metadata">
+                    <source src="@Url.Content("~/Video/" + lecture.Video)" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        } 
+    </div>
+ </div>
+
+
+@*    @Url.Content("~/videos/" + lecture.Video) *@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

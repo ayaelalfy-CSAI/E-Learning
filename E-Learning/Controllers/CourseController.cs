@@ -6,18 +6,18 @@ using DALProject.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace E_Learning.Controllers
-{ 
-    public class CourseController : Controller 
+{
+    public class CourseController : Controller
     {
-        private readonly IGenericRepository<Course> courseRepository; 
-        private readonly IWebHostEnvironment webHost; 
-        public CourseController(IGenericRepository<Course> courseRepository,IWebHostEnvironment webHost)
+        private readonly IGenericRepository<Course> courseRepository;
+        private readonly IWebHostEnvironment webHost;
+        public CourseController(IGenericRepository<Course> courseRepository, IWebHostEnvironment webHost)
         {
-            this.courseRepository = courseRepository; 
-            this.webHost = webHost;                     
-        }      
+            this.courseRepository = courseRepository;
+            this.webHost = webHost;
+        }
         public IActionResult Index()
-        {      
+        {
             IEnumerable<Course> courses = courseRepository.GetAll();
             var courseViewModels = courses.Select(course => (CourseViewModel)course).ToList(); // Map to ViewModel
 
@@ -26,7 +26,7 @@ namespace E_Learning.Controllers
 
         #region Create
         // course/AddNewCourse
-        [HttpGet] 
+        [HttpGet]
         public IActionResult AddNewCourse()
         {
             return View();
@@ -37,7 +37,7 @@ namespace E_Learning.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult SaveCourse(CourseViewModel courseViewModel)
         {
-            
+
             if (ModelState.IsValid)
             {
                 var course = (Course)courseViewModel; // Convert ViewModel to Model
@@ -54,26 +54,26 @@ namespace E_Learning.Controllers
         #endregion
 
         // course/Detail/id
-        public IActionResult Detail(int? id,string ViewName= "Detail")
+        public IActionResult Detail(int? id, string ViewName = "Detail")
         {
             if (!id.HasValue)
                 return BadRequest();
 
             var course = courseRepository.GetById(id.Value);
 
-            if(course is null)
+            if (course is null)
                 return NotFound();
 
             var courseViewModel = (CourseViewModel)course; // Convert Model to ViewModel
             return View(ViewName, courseViewModel);
 
-           // return View(ViewName, course);
+            // return View(ViewName, course);
         }
 
         // course/Edit/id
-        [HttpGet]       
-        public IActionResult Edit (int? id)
-        {           
+        [HttpGet]
+        public IActionResult Edit(int? id)
+        {
             return Detail(id, nameof(Edit));
         }
 
@@ -222,9 +222,9 @@ namespace E_Learning.Controllers
 
         [HttpGet]
         public IActionResult Delete(int? id)
-        {           
+        {
             return Detail(id, nameof(Delete));
-        } 
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -262,4 +262,4 @@ namespace E_Learning.Controllers
 
     }
 
- }
+}
