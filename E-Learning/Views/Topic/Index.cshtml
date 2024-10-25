@@ -1,28 +1,58 @@
-﻿@{
+﻿@model IEnumerable<TopicViewModel>
+
+@{
     Layout = "_HeaderFooterLayout";
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Topics for Course " + ViewData["CourseId"];
 }
 
+<div class="container">
+    <h2>Topics for Course ID: @ViewData["CourseId"]</h2>
 
-<div class="card mb-3">
-    <div class="card-header">
-        <h5>Topic 1: title</h5>
-    </div>
-    <div class="card-body">
-        @* <div class="form-group">
-            <label for="TopicName1">Topic Title</label>
-            <input type="text" name="Topics[0].Title" class="form-control" placeholder="Enter topic title" value="Static Topic Title 1" />
-        </div> *@
+    @if (Model.Any())
+    {
+        <div class="list-group">
+            @foreach (var topic in Model)
+            {
+                <div class="list-group-item mb-4">
+                    <h5>@topic.Title</h5>
+                    <p>Number of Lectures: @topic.Lectures.Count()</p>
 
-        <div class="form-group">
-            <label for="Lecture1">Lecture 1 Title</label>
-            <input type="text" name="Topics[0].Lectures[0].Title" class="form-control" value="Static Lecture 1 under Topic 1" />
+                    <!-- Button Group -->
+                    <div class="btn-group" role="group">
+                        <a asp-controller="Lecture" asp-action="Index" asp-route-id="@topic.Id" class="btn btn-success me-2">See Lectures</a>
+                        <a asp-controller="Lecture" asp-action="AddNewLecture" asp-route-id="@topic.Id" class="btn btn-primary me-2">Add New Lecture</a>
+
+                        <!-- Delete button with confirmation -->
+                        <a href="javascript:void(0);" class="btn btn-danger"
+                           onclick="if (confirm('Are you sure you want to delete this topic?')) {
+                              window.location.href='@Url.Action("Delete", "Topic", new { id = @topic.Id })'; }">
+                            Delete
+                        </a>
+                    </div>
+                </div>
+            }
         </div>
-
-        <div class="form-group">
-            <label for="Lecture2">Lecture 2 Title</label>
-            <input type="text" name="Topics[0].Lectures[1].Title" class="form-control" value="Static Lecture 2 under Topic 1" />
+    }
+    else
+    {
+        <div class="text-center">
+            <p>No topics found for this course.</p>
         </div>
+    }
+
+    <div class="text-center mt-3">
+        <a asp-controller="Topic" asp-action="AddNewTopic" asp-route-courseId="@ViewData["CourseId"]" class="btn btn-primary">Add New Topic</a>
     </div>
+
 </div>
+
+
+
+
+
+
+
+
+
+
 

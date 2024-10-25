@@ -2,14 +2,15 @@
 {
     public static class DocumentSettings
     {
-        public static string UploadFile(IFormFile file)
+        public static string UploadFile(IFormFile file, string subfolder)
         {
-            string FolderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "img");
+            string FolderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", subfolder);
 
             if (!Directory.Exists(FolderPath))
             {
                 Directory.CreateDirectory(FolderPath);
             }
+
 
             string FileName = $"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
 
@@ -23,5 +24,9 @@
 
         }
 
+        public static string UploadVideo(IFormFile videoFile)
+        {
+            return UploadFile(videoFile, "videos"); // Store in "wwwroot/videos" directory
+        }
     }
 }

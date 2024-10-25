@@ -8,9 +8,9 @@ namespace E_Learning.ViewModels
     {
         public int Id { get; set; }
         public string Title { get; set; } = null!;
-        public string? Photo { get; set; } 
+        public string? Photo { get; set; }
         public IFormFile? formFile { get; set; }
-        public string Description { get; set; } =  string.Empty;
+        public string Description { get; set; } = string.Empty;
 
         public decimal Price { get; set; }
 
@@ -42,7 +42,7 @@ namespace E_Learning.ViewModels
         {
             if (ViewModel.formFile is not null)
             {
-                ViewModel.Photo = DocumentSettings.UploadFile(ViewModel.formFile);  // Correctly handle file upload
+                ViewModel.Photo = DocumentSettings.UploadFile(ViewModel.formFile, "img");  // Correctly handle file upload
             }
 
             return new Course
