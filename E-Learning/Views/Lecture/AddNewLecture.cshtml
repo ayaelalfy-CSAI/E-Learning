@@ -29,7 +29,7 @@
                @*  </div> *@
     <br />
     <button type="submit" class="btn btn-primary">Save</button>
-    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                <a asp-controller="Lecture" asp-action="Index" asp-route-Id="@Model.TopicId" class="btn btn-secondary">Cancel</a>
 </form>
 </div>
 </div>

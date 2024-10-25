@@ -83,6 +83,38 @@ namespace E_Learning.Controllers
 
         }
 
+        public IActionResult Delete(int Id)
+        {
+            // Retrieve the lecture based on its Id
+            var lecture = lectureRepository.GetById(Id);
+
+            if (lecture == null)
+            {
+                return NotFound(); // If the lecture does not exist, return a 404
+            }
+
+            // Store the TopicId before deleting the lecture
+            int topicId = lecture.TopicId;
+
+            // Perform the delete operation
+            int result = lectureRepository.Delete(lecture);
+
+            if (result > 0)
+            {
+                TempData["Message"] = "Lecture deleted successfully.";
+            }
+            else
+            {
+                TempData["Error"] = "Unable to delete the lecture.";
+            }
+
+            // Redirect to Lecture/Index with the correct TopicId
+            return RedirectToAction("Index", new { Id = topicId });
+
+        }
+
+
+
 
 
 
